@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@formkit/nuxt": "^0.17.3",
+    "@headlessui/vue": "^1.7.14",
     "@pinia/nuxt": "^0.4.11",
     "pinia": "^2.1.4"
   },
