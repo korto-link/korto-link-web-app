@@ -18,9 +18,13 @@
   },
   "dependencies": {
     "@formkit/nuxt": "^0.17.3",
+    "@formkit/zod": "^0.17.3",
     "@headlessui/vue": "^1.7.14",
+    "@heroicons/vue": "^2.0.18",
     "@pinia/nuxt": "^0.4.11",
-    "pinia": "^2.1.4"
+    "@tailwindcss/forms": "^0.5.3",
+    "pinia": "^2.1.4",
+    "zod": "^3.21.4"
   },
   "overrides": {
     "vue": "latest"

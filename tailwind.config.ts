@@ -1,10 +1,19 @@
 import type { Config } from 'tailwindcss'
+import {blue, red} from 'tailwindcss/colors'
+import tailwindForms from '@tailwindcss/forms'
 
 export default {
   content: [],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: blue,
+        error: red[600]
+      }
+    },
   },
-  plugins: [],
+  plugins: [
+    tailwindForms
+  ],
 } satisfies Config
 
