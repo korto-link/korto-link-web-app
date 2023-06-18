@@ -6,7 +6,7 @@
           <div class="flex lg:flex-1">
             <a href="#" class="-m-1.5 p-1.5">
               <span class="sr-only">{{ appName }}</span>
-              <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
+              <img class="h-8 w-auto" src="/logo.png" alt="" />
             </a>
           </div>
         </nav>
@@ -49,13 +49,12 @@
                         it korto</FormKit>
                     </div>
                   </div>
-                  
                 </template>
               </FormKit>
               <p class="mt-3 text-sm text-gray-400 sm:mt-4">
-                    By sending you agree to our <a :href="termsOfServiceUrl" target="_blank"
-                      class="font-medium underline">terms of service</a>.
-                  </p>
+                By sending you agree to our <a :href="termsOfServiceUrl" target="_blank"
+                  class="font-medium underline">terms of service</a>.
+              </p>
             </div>
           </div>
         </div>
