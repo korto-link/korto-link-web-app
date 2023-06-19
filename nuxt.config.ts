@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     app: {
       sentry: {
         enabled: process.env.NODE_ENV === 'production',
+        apiDsn: process.env.SENTRY_API_DSN
       }
     },
     public: {

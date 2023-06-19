@@ -30,7 +30,12 @@ export default defineEventHandler(async (event) => {
                 }
             }
         } catch (exception) {
-            return exception
+            event.context.sentry.captureException(exception)
+
+            setResponseStatus(event, 500)
+            return {
+                message: 'Something wrong happened'
+            }
         }
     } else {
         await wait(1000)
