@@ -39,12 +39,12 @@
                     <div class="min-w-0 flex-1">
                       <label for="url" class="sr-only">URL</label>
                       <FormKit id="url" type="text" name="url" placeholder="Enter your URL"
-                        input-class="block w-full rounded-md border-0 ring ring-primary-100 focus:outline-none focus:ring focus:ring-primary-600 px-4 py-3 text-base text-gray-900 placeholder-gray-500"
+                        input-class="block w-full rounded-md border-0 ring ring-primary-100 formkit-loading:ring-gray-100 focus:outline-none focus:ring focus:ring-primary-600 px-4 py-3 text-base text-gray-900 placeholder-gray-500"
                         message-class="text-left text-sm mt-1 text-error" />
                     </div>
                     <div class="mt-3 sm:ml-3 sm:mt-0">
                       <FormKit type="submit"
-                        input-class="block w-full rounded-md bg-primary-600 hover:bg-primary-500 px-6 py-3 font-medium text-white shadow focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2">
+                        input-class="block w-full rounded-md bg-primary-600 formkit-loading:bg-gray-400 hover:bg-primary-500 px-6 py-3 font-medium text-white shadow focus:outline-none formkit-loading:outline-none focus:ring-2 formkit-loading:ring-0 focus:ring-primary-600 focus:ring-offset-2">
                         Make
                         it korto</FormKit>
                     </div>

@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss'
 import {blue, red} from 'tailwindcss/colors'
 import tailwindForms from '@tailwindcss/forms'
+import formKitTailwind from '@formkit/themes/tailwindcss'
 
 export default {
   content: [],
@@ -13,7 +14,8 @@ export default {
     },
   },
   plugins: [
-    tailwindForms
+    tailwindForms,
+    formKitTailwind
   ],
 } satisfies Config
 
