@@ -4,17 +4,20 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "dev:wrangler": "set NITRO_PRESET=cloudflare-module&& npm run build && wrangler dev --remote",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20230518.0",
     "@nuxt/devtools": "latest",
     "@nuxtjs/tailwindcss": "^6.7.2",
     "@types/node": "^18",
     "@vueuse/core": "^10.2.0",
     "@vueuse/nuxt": "^10.2.0",
-    "nuxt": "^3.5.2"
+    "nuxt": "^3.5.2",
+    "wrangler": "^3.1.0"
   },
   "dependencies": {
     "@formkit/nuxt": "^0.17.3",
@@ -23,6 +26,7 @@
     "@heroicons/vue": "^2.0.18",
     "@pinia/nuxt": "^0.4.11",
     "@tailwindcss/forms": "^0.5.3",
+    "nanoid": "^4.0.2",
     "pinia": "^2.1.4",
     "zod": "^3.21.4"
   },

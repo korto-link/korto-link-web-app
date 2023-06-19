@@ -61,6 +61,8 @@
       </div>
     </div>
 
+    <UrlModal :url="generatedUrl" @close="onClose" />
+
     <footer class="bg-white absolute bottom-0 w-full">
       <div class="mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
         <div class="flex justify-center space-x-6 md:order-2">
@@ -84,6 +86,11 @@
 <script setup lang="ts">
 import { z } from 'zod'
 import { createZodPlugin } from '@formkit/zod'
+import { set } from '@vueuse/core';
+import { Link } from '../types/link'
+
+const generatedUrl = ref(null)
+
 const appName = computed(() => {
   return useAppConfig().name
 })
@@ -104,7 +111,17 @@ const schema = z.object({
   url: z.string().url()
 })
 
-const [zodPlugin, submitHandler] = createZodPlugin(schema, async (data) => {
-  console.log(data)
+const [zodPlugin, submitHandler] = createZodPlugin(schema, async (data, node) => {
+  const link = await $fetch<Link>('/api/create', {
+    method: 'post',
+    body: data
+  })
+
+  set(generatedUrl, link.url)
+  node?.reset()
 })
+
+const onClose = () => {
+  set(generatedUrl, null)
+}
 </script>
