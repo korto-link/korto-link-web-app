@@ -13,7 +13,7 @@
       </header>
 
       <div class="relative isolate px-6 pt-14 lg:px-8">
-        <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+        <div class="mx-auto max-w-2xl py-6 sm:py-48 lg:py-56">
           <div class="hidden sm:mb-8 sm:flex sm:justify-center">
             <div v-if="docsUrl"
               class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
@@ -26,12 +26,12 @@
             </div>
           </div>
           <div class="text-center">
-            <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-4xl">Yet another open-source URL shortener
+            <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Yet another open-source URL shortener
             </h1>
-            <p class="mt-6 text-lg leading-8 text-gray-600">Make your own URL shortener website to create shorter,
+            <p class="mt-2 sm:mt-6 texl-xl sm:text-lg leading-8 text-gray-600">Make your own URL shortener website to create shorter,
               shareable
               links with ease</p>
-            <div class="mt-10 flex-col items-center justify-center gap-x-6">
+            <div class="mt-4 sm:mt-10 flex-col items-center justify-center gap-x-6">
               <FormKit type="form" :plugins="[zodPlugin]" :actions="false" @submit="submitHandler"
                 class="sm:mx-auto sm:max-w-xl lg:mx-0 w-full" :incomplete-message="false" #default="{ value }">
                 <div class="sm:flex">
@@ -62,7 +62,7 @@
 
     <UrlModal :url="generatedUrl" @close="onClose" />
 
-    <footer class="bg-white absolute bottom-0 w-full">
+    <footer class="bg-white sm:absolute sm:bottom-0 w-full">
       <div class="mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
         <div class="flex justify-center space-x-6 md:order-2">
           <a :href="githubUrl" target="_blank" class="text-gray-400 hover:text-gray-500">
