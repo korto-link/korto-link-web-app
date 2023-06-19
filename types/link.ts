@@ -5,3 +5,4 @@ export type Link = {
 
 export type CreateLinkBody = Omit<Link, "id">
 export type FindLinkBody = Omit<Link, "id">
+export type FindUrlBody = Omit<Link, "url">
