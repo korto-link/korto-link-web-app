@@ -20,9 +20,7 @@ const {isError, isLoading, data, error} = useQuery({
     queryKey: ['find', id],
     queryFn: async (): Promise<FindLinkBody|{url: null}|undefined> => {
         try {
-            return {
-                url: await $fetch(`/api/find/${id}`)
-            }
+            return await $fetch(`/api/find/${id}`)
         } catch (error) {
             if (error instanceof FetchError && error.statusCode === 404)
             return {
@@ -34,7 +32,9 @@ const {isError, isLoading, data, error} = useQuery({
 })
 
 watch(data, (link) => {
-    if (link && link.url) window.location.assign(link.url)
+    if (link && link.url) {
+        window.location.replace(link.url)
+    }
 })
 
 watch(error, (errorValue) => {
