@@ -13,12 +13,34 @@ async function findLink(link: FindLinkBody, db: D1Database) {
     return await statement.first<Link>()
 }
 
+const secretKey = useRuntimeConfig().turnstile.secretKey
+const endpoint = 'https://challenges.cloudflare.com/turnstile/v0/siteverify'
+
+export const verifyTurnstileToken = async (token: string): Promise<{success: boolean}> => {
+  return await $fetch(endpoint, {
+    method: 'POST',
+    body: `secret=${encodeURIComponent(secretKey)}&response=${encodeURIComponent(token)}`,
+    headers: {
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+  })
+}
+
 export default defineEventHandler(async (event) => {
     if (process.env.NODE_ENV === 'production') {
         try {
             const body = await readBody<{
-                url: string
+                url: string,
+                captcha: string
             }>(event)
+
+            if (!(await verifyTurnstileToken(body.captcha)).success) {
+                setResponseStatus(event, 422)
+                return {
+                    message: 'Invalid captcha'
+                }
+            }
+
             const { cloudflare } = event.context
     
             const DB: D1Database = cloudflare.env.DB

@@ -13,6 +13,7 @@
     "@cloudflare/workers-types": "^4.20230518.0",
     "@nuxt/devtools": "latest",
     "@nuxtjs/tailwindcss": "^6.7.2",
+    "@nuxtjs/turnstile": "^0.4.0",
     "@types/node": "^18",
     "@vueuse/core": "^10.2.0",
     "@vueuse/nuxt": "^10.2.0",

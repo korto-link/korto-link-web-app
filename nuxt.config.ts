@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ['@formkit/nuxt', '@nuxtjs/tailwindcss', '@pinia/nuxt', '@vueuse/nuxt'],
+  modules: ['@formkit/nuxt', '@nuxtjs/tailwindcss', '@nuxtjs/turnstile', '@pinia/nuxt', '@vueuse/nuxt'],
   runtimeConfig: {
     app: {
       sentry: {
@@ -17,6 +17,12 @@ export default defineNuxtConfig({
         dsn: process.env.SENTRY_DSN
       }
     },
+    turnstile: {
+      secretKey: process.env.TURNSTILE_SECRET_KEY
+    }
   },
-  ssr: false
+  ssr: false,
+  turnstile: {
+    siteKey: process.env.TURNSTILE_SITE_KEY
+  }
 })

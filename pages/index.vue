@@ -33,23 +33,22 @@
               links with ease</p>
             <div class="mt-10 flex-col items-center justify-center gap-x-6">
               <FormKit type="form" :plugins="[zodPlugin]" :actions="false" @submit="submitHandler"
-                class="sm:mx-auto sm:max-w-xl lg:mx-0 w-full" :incomplete-message="false">
-                <template #default>
-                  <div class="sm:flex">
-                    <div class="min-w-0 flex-1">
-                      <label for="url" class="sr-only">URL</label>
-                      <FormKit id="url" type="text" name="url" placeholder="Enter your URL"
-                        input-class="block w-full rounded-md border-0 ring ring-primary-100 formkit-loading:ring-gray-100 focus:outline-none focus:ring focus:ring-primary-600 px-4 py-3 text-base text-gray-900 placeholder-gray-500"
-                        message-class="text-left text-sm mt-1 text-error" />
-                    </div>
-                    <div class="mt-3 sm:ml-3 sm:mt-0">
-                      <FormKit type="submit"
-                        input-class="block w-full rounded-md bg-primary-600 formkit-loading:bg-gray-400 hover:bg-primary-500 px-6 py-3 font-medium text-white shadow focus:outline-none formkit-loading:outline-none focus:ring-2 formkit-loading:ring-0 focus:ring-primary-600 focus:ring-offset-2">
-                        Make
-                        it korto</FormKit>
-                    </div>
+                class="sm:mx-auto sm:max-w-xl lg:mx-0 w-full" :incomplete-message="false" #default="{ value }">
+                <div class="sm:flex">
+                  <div class="min-w-0 flex-1">
+                    <label for="url" class="sr-only">URL</label>
+                    <FormKit id="url" type="text" name="url" placeholder="Enter your URL"
+                      input-class="block w-full rounded-md border-0 ring ring-primary-100 formkit-loading:ring-gray-100 focus:outline-none focus:ring focus:ring-primary-600 px-4 py-3 text-base text-gray-900 placeholder-gray-500"
+                      message-class="text-left text-sm mt-1 text-error" />
                   </div>
-                </template>
+                  <div class="mt-3 sm:ml-3 sm:mt-0">
+                    <FormKit v-if="value.captcha" type="submit"
+                      input-class="block w-full rounded-md bg-primary-600 formkit-loading:bg-gray-400 hover:bg-primary-500 px-6 py-3 font-medium text-white shadow focus:outline-none formkit-loading:outline-none focus:ring-2 formkit-loading:ring-0 focus:ring-primary-600 focus:ring-offset-2">
+                      Make
+                      it korto</FormKit>
+                    <FormKit :type="captcha" name="captcha" :visible="value.captcha === undefined" />
+                  </div>
+                </div>
               </FormKit>
               <p class="mt-3 text-sm text-gray-400 sm:mt-4">
                 By sending you agree to our <a :href="termsOfServiceUrl" target="_blank"
@@ -85,9 +84,13 @@
 
 <script setup lang="ts">
 import { z } from 'zod'
+import { createInput } from '@formkit/vue'
 import { createZodPlugin } from '@formkit/zod'
 import { set } from '@vueuse/core';
 import { Link } from '../types/link'
+import FKCaptcha from '~/components/FKCaptcha.vue';
+
+const captcha = createInput(FKCaptcha)
 
 const generatedUrl = ref(null)
 
@@ -108,7 +111,8 @@ const termsOfServiceUrl = computed(() => {
 })
 
 const schema = z.object({
-  url: z.string().url()
+  url: z.string().url(),
+  captcha: z.string()
 })
 
 const [zodPlugin, submitHandler] = createZodPlugin(schema, async (data, node) => {
